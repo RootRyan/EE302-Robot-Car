@@ -85,11 +85,11 @@ void loop(){
      delay(500);
    else */
    
-   if (analogRead(irFront== irClose)) {
+   if (analogRead(irFront) >= irClose) {
      halt();
      delay(500);
    }else{
-      if(analogRead(analogRead(photoRight)>photoThres)&&(analogRead(photoLeft>photoThres))){
+      if((analogRead(photoRight) > photoThres)&& (analogRead(photoLeft) > photoThres)){
         forward();
         delay(500);
       
@@ -108,12 +108,12 @@ void loop(){
    
     }
     
-    if ((analogRead(photoRight)> photoThres)&&(photoLeft)<photoThres){
+    if ((analogRead(photoRight) > photoThres)&& (analogRead(photoLeft) < photoThres)){
      correctToLeft();
      delay(500);
      halt();
     }
-    if ((analogRead(irLeft)>= irClose)){
+    if (analogRead(irRight)>= irClose){
       correctToRight();
       delay(500);
       halt();
