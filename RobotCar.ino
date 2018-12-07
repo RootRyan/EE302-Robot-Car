@@ -41,11 +41,6 @@ const int irClose= 1.5; //1.5 V threshold
   //Put each pin in the correct mode.
   //Motors are in OUTPUT mode
 
-//Button pin
-const int buttonPin = 12;
-
-//Button starting
-
 //Initialization function
 void setup() {
   //Put each pin in the correct mode. 
@@ -55,12 +50,16 @@ void setup() {
   pinMode(motor1b, OUTPUT);
   pinMode(motor2a, OUTPUT);
   pinMode(motor2b, OUTPUT);
-
-  
-  //Button pin is input
-  pinMode(buttonPin, INPUT);
 }
 
+int main() {
+  delay(1000);
+  forward();
+  delay(500);
+  turnCounterClockwise();
+  delay(500);
+  halt();
+}
 //Infinite loop called automatically by the Arduino board
 void loop(){
 
@@ -146,18 +145,6 @@ void correctToLeft(){
    turnClockwise();
    delay(500);
    halt();
-
-  int button = digitalRead(buttonPin);
-  if(button == HIGH) {
-    forward();
-  }
-  else if(button == LOW) {
-    halt();
-  }
-
-  //Wait 50 milliseconds before starting the loop again
-  delay(50);
-
 }
 
 void turnCounterClockwise()
@@ -202,8 +189,7 @@ void halt(){
   m2bState= LOW;
 }
 
-void forward()
-{
+void forward() {
   //both motors forward
 
   digitalWrite(motor1a, HIGH);
@@ -217,8 +203,7 @@ void forward()
   m2bState= LOW;
 }
 
-void backward() 
-{
+void backward() {
   //both motors back
 
   digitalWrite(motor1a, LOW);
